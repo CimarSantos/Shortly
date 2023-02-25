@@ -29,7 +29,7 @@ CREATE TABLE public.users (
     name character varying(50) NOT NULL,
     email character varying(50),
     password character varying(50) NOT NULL,
-    "createdAt" date,
+    "createdAt" timestamp without time zone,
     "confirmPassword" text NOT NULL
 );
 
@@ -66,10 +66,10 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 INSERT INTO public.users VALUES (1, 'João', 'joao@driven.com.br', 'driven', NULL, 'driven');
-INSERT INTO public.users VALUES (2, 'Johnes', 'pereira@driven.com.br', 'driven', '2023-02-22', 'driven');
-INSERT INTO public.users VALUES (3, 'Lucas', 'silvaesilva@driven.com.br', 'webdev', '2023-02-23', 'webdev');
-INSERT INTO public.users VALUES (4, 'Jujuba', 'santosesilva@driven.com.br', 'webdev', '2023-02-23', 'sql');
-INSERT INTO public.users VALUES (5, 'Jujuba', 'silva@driven.com.br', 'sql', '2023-02-23', 'sql');
+INSERT INTO public.users VALUES (2, 'Johnes', 'pereira@driven.com.br', 'driven', '2023-02-22 00:00:00', 'driven');
+INSERT INTO public.users VALUES (3, 'Lucas', 'silvaesilva@driven.com.br', 'webdev', '2023-02-23 00:00:00', 'webdev');
+INSERT INTO public.users VALUES (4, 'Jujuba', 'santosesilva@driven.com.br', 'webdev', '2023-02-23 00:00:00', 'sql');
+INSERT INTO public.users VALUES (5, 'Jujuba', 'silva@driven.com.br', 'sql', '2023-02-23 00:00:00', 'sql');
 
 
 --
