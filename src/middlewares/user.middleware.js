@@ -8,7 +8,7 @@ function validateSignUp(req, res, next) {
   );
   if (error) {
     const message = error.details.map((d) => d.message);
-    return res.status(400).send(message);
+    return res.status(422).send(message);
   }
 
   next();
