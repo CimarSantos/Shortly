@@ -28,9 +28,8 @@ CREATE TABLE public.users (
     id integer NOT NULL,
     name character varying(50) NOT NULL,
     email character varying(50),
-    password character varying(50) NOT NULL,
-    "createdAt" timestamp without time zone,
-    "confirmPassword" text NOT NULL
+    password character varying(100) NOT NULL,
+    "createdAt" timestamp without time zone
 );
 
 
@@ -65,18 +64,19 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.users VALUES (1, 'João', 'joao@driven.com.br', 'driven', NULL, 'driven');
-INSERT INTO public.users VALUES (2, 'Johnes', 'pereira@driven.com.br', 'driven', '2023-02-22 00:00:00', 'driven');
-INSERT INTO public.users VALUES (3, 'Lucas', 'silvaesilva@driven.com.br', 'webdev', '2023-02-23 00:00:00', 'webdev');
-INSERT INTO public.users VALUES (4, 'Jujuba', 'santosesilva@driven.com.br', 'webdev', '2023-02-23 00:00:00', 'sql');
-INSERT INTO public.users VALUES (5, 'Jujuba', 'silva@driven.com.br', 'sql', '2023-02-23 00:00:00', 'sql');
+INSERT INTO public.users VALUES (6, 'Marya', 'meredith@driven.com.br', '$2b$10$1M10L64XnLINGzK36ux1EuLYMh33g6vc0oBkGUw7dAAPb/vf.8rzm', '2023-02-27 16:50:06.012');
+INSERT INTO public.users VALUES (7, 'Pam', 'pam@driven.com.br', '$2b$10$KFkZ2nvfEz01J9pbGWmWU.xIH0gcW5eEpEL5po0FvbAvHdP.AUmgW', '2023-02-28 16:30:55.357');
+INSERT INTO public.users VALUES (8, 'Mike', 'mike@driven.com.br', '$2b$10$Hs/o9INFBP0VpkM1hbKx1.mI185lcrZ5lR1fgJiL54xXs6ieaKEqy', '2023-02-28 16:31:21.269');
+INSERT INTO public.users VALUES (9, 'Judith', 'juth@driven.com.br', '$2b$10$31unbDskbO6/EEOXBpswH..qf.hwaTRheXaOpFIT9UMIgV0U1Pdl.', '2023-02-28 16:55:32.353');
+INSERT INTO public.users VALUES (10, 'Marya', 'marya@driven.com.br', '$2b$10$KSB4eZzp2NsebPUhEMVyYeHbgbLZ8ywpjnS3W8cByA5zpcwwoKZWK', '2023-02-28 19:35:55.171');
+INSERT INTO public.users VALUES (11, 'Ofélia Moreira', 'Alessandro.Albuquerque@hotmail.com', '$2b$10$nlMQ6.42qaLJbysusbWSyuNt1bnLAyOPRmgAm0npRXy28bWOa0LSW', '2023-02-28 20:00:42.397');
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 5, true);
+SELECT pg_catalog.setval('public.users_id_seq', 11, true);
 
 
 --
