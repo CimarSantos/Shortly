@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import chalk from "chalk";
 import dotenv from "dotenv";
-import userRouter from "./routers/usersRouter.js";
+import userRouter from "./routers/authRouter.js";
 
 dotenv.config();
 
