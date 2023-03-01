@@ -2,7 +2,7 @@ import { db } from "../database/database.js";
 import { STATUS_CODE } from "../enums/statusCode.js";
 import * as authRepository from "../repositories/authRepository.js";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { v4 as uuid } from "uuid";
 
 async function signUp(req, res) {
   const { name, email, password } = req.body;
@@ -34,10 +34,7 @@ async function signIn(req, res) {
       return res.sendStatus(STATUS_CODE.UNAUTHORIZED);
     }
 
-    const fiveHours = 18000;
-    const token = jwt.sign({ userId: user.id }, process.env.TOKEN_SECRET, {
-      expiresIn: fiveHours,
-    });
+    const token = iuud();
 
     const { rows: sessionExists } = await authRepository.selectUserFromSessions(
       user.id
