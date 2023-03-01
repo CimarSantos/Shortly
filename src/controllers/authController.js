@@ -34,15 +34,16 @@ async function signIn(req, res) {
       return res.sendStatus(STATUS_CODE.UNAUTHORIZED);
     }
 
-    const token = iuud();
+    const token = uuid();
 
     const { rows: sessionExists } = await authRepository.selectUserFromSessions(
       user.id
     );
-    if (sessionExists.length !== 0) {
-      await authRepository.deleteUserFromSessions(sessionExists[0].token);
-    }
 
+    /* if (sessionExists.length !== 0) {
+      await authRepository.deleteUserFromSessions(sessionExists[0].token);
+    } */
+    console.log(token);
     await authRepository.insertUserIntoSessions(user.id, token);
     return res.status(STATUS_CODE.OK).send({ token });
   } catch (error) {

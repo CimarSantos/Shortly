@@ -3,7 +3,7 @@ import { TABLE } from "../enums/tables.js";
 
 async function selectUserToken(userId, token) {
   return db.query(
-    `SELECT * FROM ${TABLE.SESSIONS} WHERE "userId" = $1 AND token = $2 AND valid = TRUE;`,
+    `SELECT * FROM ${TABLE.SESSIONS} WHERE userid = $1 AND token = $2 AND valid = TRUE;`,
     [userId, token]
   );
 }
@@ -24,14 +24,14 @@ async function insertUserIntoUsers(name, email, password) {
 }
 
 async function selectUserFromSessions(userId) {
-  return db.query(`SELECT * FROM ${TABLE.SESSIONS} WHERE "userId" = $1;`, [
+  return await db.query(`SELECT * FROM ${TABLE.SESSIONS} WHERE userid = $1;`, [
     userId,
   ]);
 }
 
 async function insertUserIntoSessions(userId, token) {
   return db.query(
-    `INSERT INTO ${TABLE.SESSIONS} ("userId", token) VALUES ($1, $2);`,
+    `INSERT INTO ${TABLE.SESSIONS} (userid, token) VALUES ($1, $2);`,
     [userId, token]
   );
 }
