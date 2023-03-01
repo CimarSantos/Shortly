@@ -40,10 +40,10 @@ async function signIn(req, res) {
       user.id
     );
 
-    /* if (sessionExists.length !== 0) {
+    if (sessionExists.length !== 0) {
       await authRepository.deleteUserFromSessions(sessionExists[0].token);
-    } */
-    console.log(token);
+    }
+    
     await authRepository.insertUserIntoSessions(user.id, token);
     return res.status(STATUS_CODE.OK).send({ token });
   } catch (error) {
