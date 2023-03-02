@@ -50,4 +50,15 @@ async function getUrlbyShort(req, res) {
   }
 }
 
-export { shotyUrl, getUrlShorts, getUrlbyShort };
+async function deleteUrlById(req, res) {
+  const { id } = req.params;
+
+  try {
+    await urlsRepository.deleteUrlFromUrls(id);
+    return res.sendStatus(STATUS_CODE.NO_CONTENT);
+  } catch (error) {
+    return res.sendStatus(STATUS_CODE.SERVER_ERROR);
+  }
+}
+
+export { shotyUrl, getUrlShorts, getUrlbyShort, deleteUrlById };
