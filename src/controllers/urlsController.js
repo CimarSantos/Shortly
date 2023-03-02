@@ -21,6 +21,17 @@ async function shotyUrl(req, res) {
   }
 }
 
+async function getUrlShorts(req, res) {
+  const { id } = req.params;
+  try {
+    const { rows: url } = await urlsRepository.selectUrlById(id);
+    if (url.length === 0) {
+      return res.sendStatus(STATUS_CODE.NOT_FOUND);
+    }
+    return res.status(STATUS_CODE.OK).send(url[0]);
+  } catch (error) {
+    return res.sendStatus(STATUS_CODE.SERVER_ERROR);
+  }
+}
 
-
-export { shotyUrl };
+export { shotyUrl, getUrlShorts };

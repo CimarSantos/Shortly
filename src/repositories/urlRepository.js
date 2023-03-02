@@ -2,10 +2,7 @@ import { db } from "../database/database.js";
 import { TABLE } from "../enums/tables.js";
 
 async function selectUrlById(id) {
-  return db.query(
-    `SELECT id, shorturl, url FROM ${TABLE.URLS} WHERE id = $1;`,
-    [id]
-  );
+  return db.query(`SELECT * FROM ${TABLE.URLS} WHERE id = $1;`, [id]);
 }
 
 async function selectUrlByIdandUserId(id, userId) {
