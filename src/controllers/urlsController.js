@@ -35,4 +35,18 @@ async function getUrlShorts(req, res) {
   }
 }
 
-export { shotyUrl, getUrlShorts };
+async function getUrlbyShort(req, res) {
+  const { shortUrl } = req.params;
+
+  try {
+    const { rows: url } = await urlsRepository.selectUrlByShortUrl(shortUrl);
+    if (url.length === 0) {
+      return res.sendStatus(STATUS_CODE.NOT_FOUND);
+    }
+    return res.redirect(url[0].url);
+  } catch (error) {
+    return res.sendStatus(STATUS_CODE.SERVER_ERROR);
+  }
+}
+
+export { shotyUrl, getUrlShorts, getUrlbyShort };

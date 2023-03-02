@@ -20,7 +20,7 @@ async function insertUrlIntoUrls(userId, url, shortUrl) {
 }
 
 async function selectUrlByShortUrl(shortUrl) {
-  return db.query(`SELECT url FROM ${TABLE.URLS} WHERE shorturl = $1;`, [
+  return db.query(`SELECT url FROM ${TABLE.URLS} WHERE "shortUrl" = $1;`, [
     shortUrl,
   ]);
 }
