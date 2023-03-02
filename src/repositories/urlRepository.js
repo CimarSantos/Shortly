@@ -27,7 +27,7 @@ async function selectUrlByShortUrl(shortUrl) {
 
 async function updateVisitCount(shortUrl) {
   return db.query(
-    `UPDATE ${TABLE.URLS} SET visitcount = (visitcount + 1) WHERE shorturl = $1;`,
+    `UPDATE ${TABLE.URLS} SET visitcount = (visitcount + 1) WHERE "shortUrl" = $1;`,
     [shortUrl]
   );
 }

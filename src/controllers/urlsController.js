@@ -43,6 +43,7 @@ async function getUrlbyShort(req, res) {
     if (url.length === 0) {
       return res.sendStatus(STATUS_CODE.NOT_FOUND);
     }
+      await urlsRepository.updateVisitCount(shortUrl);
     return res.redirect(url[0].url);
   } catch (error) {
     return res.sendStatus(STATUS_CODE.SERVER_ERROR);
