@@ -144,13 +144,15 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.sessions VALUES (1, 11, '0b02bea5-532f-4ae9-9bd8-2ece2e0ba44a', '2023-03-01 16:59:42.87979');
+INSERT INTO public.sessions VALUES (2, 11, '43ff1086-ef9c-4236-953a-fd01e38309b2', '2023-03-01 17:07:06.632898');
 
 
 --
 -- Data for Name: urls; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO public.urls VALUES (1, NULL, 'https://chat.openai.com/chat', 'nwWJOnNi', 0, '2023-03-01 22:41:52.61628');
+INSERT INTO public.urls VALUES (2, NULL, 'https://chat.openai.com/chat', 'IkgDcpCd', 0, '2023-03-01 22:45:50.651437');
 
 
 --
@@ -169,14 +171,14 @@ INSERT INTO public.users VALUES (11, 'Ofélia Moreira', 'Alessandro.Albuquerque@
 -- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.sessions_id_seq', 1, true);
+SELECT pg_catalog.setval('public.sessions_id_seq', 2, true);
 
 
 --
 -- Name: urls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.urls_id_seq', 1, false);
+SELECT pg_catalog.setval('public.urls_id_seq', 2, true);
 
 
 --
