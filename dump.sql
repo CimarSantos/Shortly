@@ -153,6 +153,10 @@ INSERT INTO public.sessions VALUES (2, 11, '43ff1086-ef9c-4236-953a-fd01e38309b2
 
 INSERT INTO public.urls VALUES (1, NULL, 'https://chat.openai.com/chat', 'nwWJOnNi', 0, '2023-03-01 22:41:52.61628');
 INSERT INTO public.urls VALUES (2, NULL, 'https://chat.openai.com/chat', 'IkgDcpCd', 0, '2023-03-01 22:45:50.651437');
+INSERT INTO public.urls VALUES (3, NULL, 'https://chat.openai.com/chat', 'o6cZBsKH', 0, '2023-03-01 23:28:58.8809');
+INSERT INTO public.urls VALUES (4, NULL, 'https://chat.openai.com/chat', '0orkfeSr', 0, '2023-03-01 23:29:15.143797');
+INSERT INTO public.urls VALUES (5, NULL, 'https://chat.openai.com/chat', 'OlcbuU0B', 0, '2023-03-01 23:29:41.697359');
+INSERT INTO public.urls VALUES (6, NULL, 'https://chat.openai.com/chat', 'V2w7hw-Z', 0, '2023-03-01 23:30:10.233168');
 
 
 --
@@ -178,7 +182,7 @@ SELECT pg_catalog.setval('public.sessions_id_seq', 2, true);
 -- Name: urls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.urls_id_seq', 2, true);
+SELECT pg_catalog.setval('public.urls_id_seq', 6, true);
 
 
 --

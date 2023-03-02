@@ -10,7 +10,7 @@ async function shotyUrl(req, res) {
 
   try {
     await urlsRepository.insertUrlIntoUrls(userId, url, shortUrl);
-    return res.status(STATUS_CODE.CREATED).send({ id, shortUrl });
+    return res.status(STATUS_CODE.CREATED).send({ shortUrl });
   } catch (error) {
     return res.sendStatus(STATUS_CODE.SERVER_ERROR);
   }
