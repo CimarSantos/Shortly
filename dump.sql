@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.6 (Ubuntu 14.6-0ubuntu0.22.04.1)
--- Dumped by pg_dump version 14.6 (Ubuntu 14.6-0ubuntu0.22.04.1)
+-- Dumped from database version 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1)
+-- Dumped by pg_dump version 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -60,7 +60,7 @@ CREATE TABLE public.urls (
     id integer NOT NULL,
     userid integer,
     url character varying(255) NOT NULL,
-    shorturl character varying(15) NOT NULL,
+    "shortUrl" character varying(15) NOT NULL,
     visitcount integer DEFAULT 0 NOT NULL,
     createdat timestamp without time zone DEFAULT now() NOT NULL
 );
@@ -157,6 +157,25 @@ INSERT INTO public.urls VALUES (3, NULL, 'https://chat.openai.com/chat', 'o6cZBs
 INSERT INTO public.urls VALUES (4, NULL, 'https://chat.openai.com/chat', '0orkfeSr', 0, '2023-03-01 23:29:15.143797');
 INSERT INTO public.urls VALUES (5, NULL, 'https://chat.openai.com/chat', 'OlcbuU0B', 0, '2023-03-01 23:29:41.697359');
 INSERT INTO public.urls VALUES (6, NULL, 'https://chat.openai.com/chat', 'V2w7hw-Z', 0, '2023-03-01 23:30:10.233168');
+INSERT INTO public.urls VALUES (7, NULL, 'https://chat.openai.com/chat', 'GpJg6xJz', 0, '2023-03-01 23:50:26.212047');
+INSERT INTO public.urls VALUES (8, NULL, 'https://chat.openai.com/chat', 'iUb6Ukh7', 0, '2023-03-02 15:27:14.181322');
+INSERT INTO public.urls VALUES (9, NULL, 'https://chat.openai.com/chat', '2PihmgU4', 0, '2023-03-02 15:28:52.759697');
+INSERT INTO public.urls VALUES (10, NULL, 'https://chat.openai.com/chat', 'cpAM21WE', 0, '2023-03-02 15:30:28.334304');
+INSERT INTO public.urls VALUES (11, NULL, 'https://chat.openai.com/chat', 'JJbJVCuj', 0, '2023-03-02 15:32:57.543174');
+INSERT INTO public.urls VALUES (12, NULL, 'https://chat.openai.com/chat', '3EXC-WFQ', 0, '2023-03-02 15:34:38.96636');
+INSERT INTO public.urls VALUES (13, NULL, 'https://chat.openai.com/chat', 'JmCzPY0F', 0, '2023-03-02 15:35:23.301295');
+INSERT INTO public.urls VALUES (14, NULL, 'https://chat.openai.com/chat', '6xyR6ALu', 0, '2023-03-02 15:35:48.12558');
+INSERT INTO public.urls VALUES (15, NULL, 'https://chat.openai.com/chat', 'qKt_EoqX', 0, '2023-03-02 15:51:52.393874');
+INSERT INTO public.urls VALUES (16, NULL, 'https://chat.openai.com/chat', '60ycDO-8', 0, '2023-03-02 15:51:59.629035');
+INSERT INTO public.urls VALUES (17, NULL, 'https://chat.openai.com/chat', 'WS6GGfX8', 0, '2023-03-02 15:52:29.101923');
+INSERT INTO public.urls VALUES (18, NULL, 'https://chat.openai.com/chat', 'AMDTfyup', 0, '2023-03-02 15:52:30.834497');
+INSERT INTO public.urls VALUES (19, NULL, 'https://chat.openai.com/chat', 'wMNjIp4m', 0, '2023-03-02 15:53:50.12634');
+INSERT INTO public.urls VALUES (20, NULL, 'https://chat.openai.com/chat', 'n4BNqrvW', 0, '2023-03-02 15:58:39.133077');
+INSERT INTO public.urls VALUES (21, NULL, 'https://chat.openai.com/chat', '37qs6s2p', 0, '2023-03-02 16:02:19.476291');
+INSERT INTO public.urls VALUES (22, NULL, 'https://chat.openai.com/chat', 'NnWMLwn_', 0, '2023-03-02 16:05:56.874445');
+INSERT INTO public.urls VALUES (23, NULL, 'https://chat.openai.com/chat', 'D5avigiB', 0, '2023-03-02 16:06:14.118562');
+INSERT INTO public.urls VALUES (24, NULL, 'https://chat.openai.com/chat', '1Y6wLWnd', 0, '2023-03-02 16:06:27.114993');
+INSERT INTO public.urls VALUES (25, NULL, 'https://chat.openai.com/chat', 'U41q4dpC', 0, '2023-03-02 16:07:18.430645');
 
 
 --
@@ -182,7 +201,7 @@ SELECT pg_catalog.setval('public.sessions_id_seq', 2, true);
 -- Name: urls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.urls_id_seq', 6, true);
+SELECT pg_catalog.setval('public.urls_id_seq', 25, true);
 
 
 --

@@ -14,20 +14,20 @@ async function selectUrlByIdandUserId(id, userId) {
 
 async function insertUrlIntoUrls(userId, url, shortUrl) {
   return db.query(
-    `INSERT INTO ${TABLE.URLS} (userid, url, shorturl) VALUES ($1, $2, $3);`,
+    `INSERT INTO ${TABLE.URLS} (userid, url, "shortUrl") VALUES ($1, $2, $3);`,
     [userId, url, shortUrl]
   );
 }
 
 async function selectUrlByShortUrl(shortUrl) {
-  return db.query(`SELECT url FROM ${TABLE.URLS} WHERE shorturl = $1;`, [
+  return db.query(`SELECT url FROM ${TABLE.URLS} WHERE "shortUrl" = $1;`, [
     shortUrl,
   ]);
 }
 
 async function updateVisitCount(shortUrl) {
   return db.query(
-    `UPDATE ${TABLE.URLS} SET visitcount = (visitcount + 1) WHERE shorturl = $1;`,
+    `UPDATE ${TABLE.URLS} SET visitcount = (visitcount + 1) WHERE "shortUrl" = $1;`,
     [shortUrl]
   );
 }
