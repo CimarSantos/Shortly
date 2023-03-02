@@ -10,10 +10,17 @@ async function shotyUrl(req, res) {
 
   try {
     await urlsRepository.insertUrlIntoUrls(userId, url, shortUrl);
-    return res.status(STATUS_CODE.CREATED).send({ shortUrl });
+    const cutUrl = await db.query("SELECT * FROM urls WHERE url = $1;", [url]);
+
+    return res.status(STATUS_CODE.CREATED).send({
+      id: cutUrl.rows[0].id,
+      shortUrl: cutUrl.rows[0].shorturl,
+    });
   } catch (error) {
     return res.sendStatus(STATUS_CODE.SERVER_ERROR);
   }
 }
+
+
 
 export { shotyUrl };
