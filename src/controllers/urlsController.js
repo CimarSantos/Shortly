@@ -24,7 +24,7 @@ async function shotyUrl(req, res) {
 async function getUrlShorts(req, res) {
   const { id } = req.params;
   try {
-    const { rows: url } = await urlsRepository.selectUrlById(id);
+      const { rows: url } = await urlsRepository.selectUrlById(id);
     if (url.length === 0) {
       return res.sendStatus(STATUS_CODE.NOT_FOUND);
     }
