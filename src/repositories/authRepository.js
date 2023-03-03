@@ -1,11 +1,8 @@
 import { db } from "../database/database.js";
 import { TABLE } from "../enums/tables.js";
 
-async function selectUserToken(userId, token) {
-  return db.query(
-    `SELECT * FROM ${TABLE.SESSIONS} WHERE userid = $1 AND token = $2;`,
-    [userId, token]
-  );
+async function selectUserToken(token) {
+  return db.query(`SELECT * FROM ${TABLE.SESSIONS} WHERE token = $1;`, [token]);
 }
 
 async function deleteUserFromSessions(token) {
