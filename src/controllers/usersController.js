@@ -5,25 +5,26 @@ async function getDataUsers(req, res) {
   const { userId } = res.locals;
 
   try {
-    const usersUrls = await db.query(
-      'SELECT id, "shortUrl", url, visitcount FROM urls WHERE userid = $1;',
-      [userId]
-    );
-
-    const visits = await db.query(
-      "SELECT SUM(visitcount) FROM urls WHERE userid = $1;",
-      [userId]
-    );
-
-    const userinfo = await db.query(
-      "SELECT id, name FROM users WHERE id = $1;",
-      [userId]
-    );
+    const [usersUrls, visits, userinfo] = await Promise.all([
+      db.query(
+        'SELECT id, "shortUrl", url, visitcount FROM urls WHERE userid = $1;',
+        [userId]
+      ),
+      db.query("SELECT SUM(visitcount) FROM urls WHERE userid = $1;", [userId]),
+      db.query("SELECT id, name FROM users WHERE id = $1;", [userId]),
+    ]);
+    const shortenedUrls = usersUrls.rows.map((url) => ({
+      id: url.id,
+      shortUrl: url.shortUrl,
+      url: url.url,
+      visitCount: url.visitcount,
+    }));
 
     const myUrls = {
-      ...userinfo.rows[0],
-      visitCount: Number(visits.rows[0].sum),
-      shortenedUrls: usersUrls.rows,
+      id: userinfo.rows[0]?.id,
+      name: userinfo.rows[0]?.name,
+      visitCount: Number(visits.rows[0]?.sum) || 0,
+      shortenedUrls,
     };
 
     return res.send(myUrls);
@@ -31,6 +32,7 @@ async function getDataUsers(req, res) {
     return res.status(STATUS_CODE.SERVER_ERROR).send(error.message);
   }
 }
+
 
 async function getRanking(req, res) {
   try {
