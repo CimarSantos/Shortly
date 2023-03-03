@@ -14,7 +14,7 @@ import {
 
 const urlsRouter = Router();
 
-urlsRouter.post("/urls/shorten", postUrlValidade, validadeUrl, shotyUrl);
+urlsRouter.post("/urls/shorten", /* tokenValidation, */ validadeUrl, shotyUrl);
 urlsRouter.get("/urls/:id", schemasValidation, getUrlShorts);
 urlsRouter.get("/urls/open/:shortUrl", /* validadeUrl, */ getUrlbyShort);
 urlsRouter.delete("/urls/:id", /* validadeUrl, */ deleteUrlById);
