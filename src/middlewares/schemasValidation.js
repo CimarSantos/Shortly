@@ -28,7 +28,7 @@ async function schemasValidation(req, res, next) {
     let { id } = req.params;
     id = id.trim();
 
-    result = schemas.paramsId.validate({ id });
+    result = schemas.paramsIdSchema.validate({ id });
     res.locals.id = result?.value.id;
   }
 

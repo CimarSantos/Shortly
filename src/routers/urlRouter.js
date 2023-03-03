@@ -5,13 +5,17 @@ import {
   getUrlbyShort,
   deleteUrlById,
 } from "../controllers/urlsController.js";
-/* import { tokenValidation } from "../middlewares/validation.token.js"; */
-import { validadeUrl, validadeIdUrl } from "../middlewares/url.middleware.js";
+import { schemasValidation } from "../middlewares/schemasValidation.js";
+import {
+  validadeUrl,
+  validadeIdUrl,
+  postUrlValidade,
+} from "../middlewares/url.middleware.js";
 
 const urlsRouter = Router();
 
-urlsRouter.post("/urls/shorten", /* tokenValidation, */ validadeUrl, shotyUrl);
-urlsRouter.get("/urls/:id", /* validadeUrl, */ getUrlShorts);
+urlsRouter.post("/urls/shorten", postUrlValidade, validadeUrl, shotyUrl);
+urlsRouter.get("/urls/:id", schemasValidation, getUrlShorts);
 urlsRouter.get("/urls/open/:shortUrl", /* validadeUrl, */ getUrlbyShort);
 urlsRouter.delete("/urls/:id", /* validadeUrl, */ deleteUrlById);
 
