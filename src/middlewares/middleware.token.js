@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { STATUS_CODE } from "../enums/statusCode.js";
 import * as authRepository from "../repositories/authRepository.js";
 
@@ -5,20 +6,17 @@ async function urlTokenValidation(req, res, next) {
   const token = req.headers.authorization?.replace("Bearer ", "");
 
   try {
-    const verifyToken = jwt.verify(token, process.env.TOKEN_SECRET);
-
-    const { rows: isValidToken } = await authRepository.selectUserToken(
-      verifyToken.userId,
-      token
-    );
+    const { rows: isValidToken } = await authRepository.selectUserToken(token);
+    console.log(isValidToken.length);
     if (isValidToken.length === 0) {
       return res.sendStatus(STATUS_CODE.UNAUTHORIZED);
     }
 
-    res.locals.userId = verifyToken.userId;
+    res.locals.userId = isValidToken.userId;
   } catch (error) {
-    await authRepository.deleteUserFromSessions(token);
-    return res.sendStatus(STATUS_CODE.UNAUTHORIZED);
+    /* await authRepository.deleteUserFromSessions(token); */
+
+    return res.status(STATUS_CODE.SERVER_ERROR).send(error.message);
   }
 
   next();
