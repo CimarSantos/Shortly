@@ -90,4 +90,5 @@ async function deleteUrlById(req, res) {
   }
 }
 
+
 export { shotyUrl, getUrlShorts, getUrlbyShort, deleteUrlById };
