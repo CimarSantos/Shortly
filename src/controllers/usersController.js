@@ -3,34 +3,32 @@ import { STATUS_CODE } from "../enums/statusCode.js";
 
 async function getDataUsers(req, res) {
   const { userId } = res.locals;
+console.log(userId);
+try {
+  const [usersUrls, visits, userinfo] = await Promise.all([
+    db.query(
+      'SELECT id, "shortUrl", url, visitcount FROM urls WHERE userid = $1;',
+      [userId]
+    ),
+    db.query("SELECT SUM(visitcount) FROM urls WHERE userid = $1;", [userId]),
+    db.query("SELECT id, name FROM users WHERE id = $1;", [userId]),
+  ]);
 
-  try {
-    const [usersUrls, visits, userinfo] = await Promise.all([
-      db.query(
-        'SELECT id, "shortUrl", url, visitcount FROM urls WHERE userid = $1;',
-        [userId]
-      ),
-      db.query("SELECT SUM(visitcount) FROM urls WHERE userid = $1;", [userId]),
-      db.query("SELECT id, name FROM users WHERE id = $1;", [userId]),
-    ]);
-    const shortenedUrls = usersUrls.rows.map((url) => ({
-      id: url.id,
-      shortUrl: url.shortUrl,
-      url: url.url,
-      visitCount: url.visitcount,
-    }));
+  /* console.log(usersUrls.rows);
+  console.log(visits.rows);
+  console.log(userinfo.rows); */
 
-    const myUrls = {
-      id: userinfo.rows[0]?.id,
-      name: userinfo.rows[0]?.name,
-      visitCount: Number(visits.rows[0]?.sum) || 0,
-      shortenedUrls,
-    };
+  const myUrls = {
+    id: userinfo.rows[0]?.id,
+    name: userinfo.rows[0]?.name,
+    visitCount: Number(visits.rows[0]?.sum),
+    shortenedUrls: usersUrls.rows,
+  };
 
-    return res.send(myUrls);
-  } catch (error) {
-    return res.status(STATUS_CODE.SERVER_ERROR).send(error.message);
-  }
+  return res.send(myUrls);
+} catch (error) {
+  return res.status(STATUS_CODE.SERVER_ERROR).send(error.message);
+}
 }
 
 

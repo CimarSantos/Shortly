@@ -7,7 +7,7 @@ import {
   deleteUrlById,
 } from "../controllers/urlsController.js";
 import { schemasValidation } from "../middlewares/schemasValidation.js";
-import { validadeUrl, postUrlValidade } from "../middlewares/url.middleware.js";
+import { validadeUrl } from "../middlewares/url.middleware.js";
 
 const urlsRouter = Router();
 

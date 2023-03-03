@@ -53,11 +53,40 @@ async function getUrlbyShort(req, res) {
 async function deleteUrlById(req, res) {
   const { id } = req.params;
 
+  const { authorization } = req.headers;
+
+  if (!authorization) return res.sendStatus(STATUS_CODE.UNAUTHORIZED);
+
+  const token = authorization?.replace("Bearer ", "");
+
+  if (!token) return res.sendStatus(STATUS_CODE.UNAUTHORIZED);
+
   try {
-    await urlsRepository.deleteUrlFromUrls(id);
-    return res.sendStatus(STATUS_CODE.NO_CONTENT);
+    const { rows } = await db.query("SELECT * FROM sessions WHERE token = $1", [
+      token,
+    ]);
+
+    const [user] = rows;
+
+    if (!user) return res.sendStatus(STATUS_CODE.UNAUTHORIZED);
+
+    const { rows: shortens } = await db.query(
+      "SELECT * FROM urls WHERE id = $1",
+      [id]
+    );
+
+    const [url] = shortens;
+
+    if (!url) return res.sendStatus(STATUS_CODE.NOT_FOUND);
+
+    if (user.userId != url.userId)
+      return res.sendStatus(STATUS_CODE.UNAUTHORIZED);
+
+    await db.query("DELETE FROM urls WHERE id= $1", [id]);
+
+    res.sendStatus(STATUS_CODE.NO_CONTENT);
   } catch (error) {
-    return res.sendStatus(STATUS_CODE.SERVER_ERROR);
+    res.status(STATUS_CODE.SERVER_ERROR).send(error.message);
   }
 }
 
