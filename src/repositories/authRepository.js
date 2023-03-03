@@ -3,7 +3,7 @@ import { TABLE } from "../enums/tables.js";
 
 async function selectUserToken(userId, token) {
   return db.query(
-    `SELECT * FROM ${TABLE.SESSIONS} WHERE userid = $1 AND token = $2 AND valid = TRUE;`,
+    `SELECT * FROM ${TABLE.SESSIONS} WHERE userid = $1 AND token = $2;`,
     [userId, token]
   );
 }
