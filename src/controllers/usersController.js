@@ -5,19 +5,24 @@ async function getDataUsers(req, res) {
   const { userId } = res.locals;
 
   try {
-    const [usersUrls, visits, userinfo] = await Promise.all([
-      db.query(
-        'SELECT id, "shortUrl", url, visitcount FROM urls WHERE userid = $1;',
-        [userId]
-      ),
-      db.query("SELECT SUM(visitcount) FROM urls WHERE userid = $1;", [userId]),
-      db.query("SELECT id, name FROM users WHERE id = $1;", [userId]),
-    ]);
+    const usersUrls = await db.query(
+      'SELECT id, "shortUrl", url, visitcount FROM urls WHERE userid = $1;',
+      [userId]
+    );
+
+    const visits = await db.query(
+      "SELECT SUM(visitcount) FROM urls WHERE userid = $1;",
+      [userId]
+    );
+
+    const userinfo = await db.query(
+      "SELECT id, name FROM users WHERE id = $1;",
+      [userId]
+    );
 
     const myUrls = {
-      id: userinfo.rows[0]?.id,
-      name: userinfo.rows[0]?.name,
-      visitCount: Number(visits.rows[0]?.sum),
+      ...userinfo.rows[0],
+      visitCount: Number(visits.rows[0].sum),
       shortenedUrls: usersUrls.rows,
     };
 
